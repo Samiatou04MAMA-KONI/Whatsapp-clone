@@ -1,0 +1,195 @@
+/* 1) RESET DE BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* largeur inclut padding + border */
+}
+
+/* 2) STYLE GLOBAL DU BODY */
+body {
+  font-family: Arial, Helvetica, sans-serif; /* police par défaut */
+  background-color: #f3f3f3; /* couleur de fond */
+  color: #333; /* couleur du texte */
+  line-height: 2.5; /* espacement du texte */
+  height: 100vh;
+  overflow: hidden;
+}
+header {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px 0px 15px;
+}
+.fa-comment-dots {
+    display: none; /* par défaut masqué */
+    background: green;
+    color: #f3f3f3;
+    font-size: 20px;
+    padding: 5px;
+    border-radius: 100%;
+    width: 30%;
+}
+.fa-comment-dots:hover {
+    cursor: pointer;
+    font-size: 21px;
+}
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 10px;
+  height: 90%;
+  margin: 0px 0px 0px 35px;
+}
+.discussions {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 10px;
+}
+.discussions input {
+  width: 100%;
+  padding: 6px 10px;
+  outline: none;
+  border: 0px solid #ccc;
+}
+.discussions input:focus {
+  outline: none;
+}
+.list-discussions {
+  display: grid;
+  grid-template-rows: repeat(6, auto);
+  margin-top: 20px;
+  height: 500px;        /* hauteur fixe pour le bloc scrollable */
+    overflow-y: auto;     /* active le scroll vertical */
+    scrollbar-width: thin; /* pour Firefox */
+}
+
+.list-discussions::-webkit-scrollbar {
+    width: 4px;
+}
+
+.list-discussions::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 10px;
+}
+
+.list-discussions::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.list-discussions::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+.list-discussions div {
+  display: flex;
+  align-items: center;
+  padding: 0px 5px;
+}
+.discussion-item {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+.discussion-item div {
+    display: flex;
+    flex-direction: column; /* nom et dernier message en colonne */
+    align-items: flex-start; /* aligner à gauche */
+    justify-content: flex-start; /* aligner en haut */
+    overflow: hidden; /* éviter dépassement */
+    white-space: normal; /* autoriser le texte à aller à la ligne */
+    text-overflow: ellipsis; /* tronquer si trop long */
+    max-width: 200px; /* largeur max de la div */
+    gap: 2px; /* petit espace entre nom et dernier message */
+}
+.discussion-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover; /* pour que l'image garde ses proportions */
+    margin-right: 10px; /* espace entre image et texte */
+}
+
+.discussion-item .discussion {
+    margin: 0;
+    font-size: 15px;
+    color: rgb(69, 69, 69);
+    font-weight: 500;
+}
+
+.discussion-item .last-message {
+    font-size: 12px;
+    color: #777;
+    margin-top: -15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* tronque le texte trop long avec "..." */
+    max-width: 180px; /* ajuste selon la largeur de ta liste */
+}
+
+
+.list-discussions div:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.chat {
+  background-color: #fefefe;
+  padding: 20px;
+  border-radius: 10px;
+  place-items: center;
+   height: 640px;
+}
+.blocchat {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  width: 50%;
+  margin-top: 20%;
+}
+.chiffrement{
+    margin-top: 15%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+@media screen and (min-width: 671px) and (max-width: 900px) { 
+    .chat {
+        height: 600px; /* hauteur réduite pour les écrans plus petits */
+        margin: 0px;
+        padding: 15px;
+    }
+     .container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* discussions à gauche, chat à droite */
+    gap: 5px;
+    height: 90%;
+    margin: 0px;
+     }
+}
+@media screen and (max-width: 670px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .discussions {
+    display: block; /* affichée par défaut */
+  }
+
+  .chat {
+    display: none; /* cachée par défaut */
+  }
+
+  .chat-header .fa-comment-dots {
+    display: inline-block; /* bouton retour visible */
+    cursor: pointer;
+  }
+}
